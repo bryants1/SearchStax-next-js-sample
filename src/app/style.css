@@ -1,3 +1,408 @@
+/* Fitchburg State University Branded Main CSS */
+:root {
+  /* Official Fitchburg State University Colors */
+  --fsu-green: #00563F;           /* PMS 343 Green - Primary Brand Color */
+  --fsu-gold: #E9AF2F;            /* PMS 123 Yellow/Gold - Secondary Brand Color */
+  --fsu-dark-green: #024D36;      /* Athletic Department Dark Green */
+  --fsu-orange: #FBBF16;          /* Athletic Department Orange */
+  --fsu-white: #FFFFFF;
+  --fsu-light-gray: #F5F5F5;
+  --fsu-medium-gray: #E6E9EC;
+  --fsu-dark-gray: #33475A;
+  --fsu-text-dark: #213547;
+  
+  /* Typography */
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color-scheme: light;
+  color: var(--fsu-text-dark);
+  background-color: var(--fsu-white);
+  
+  /* Enhanced rendering */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Body and Layout */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--fsu-white);
+  color: var(--fsu-text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styling */
+.fitchburg-header {
+  background: linear-gradient(135deg, var(--fsu-green) 0%, var(--fsu-dark-green) 100%);
+  color: var(--fsu-white);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 86, 63, 0.1);
+}
+
+.fitchburg-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fitchburg-header .logo-placeholder {
+  width: 40px;
+  height: 40px;
+  background-color: var(--fsu-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--fsu-green);
+  font-size: 1.2rem;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Links */
+a {
+  color: var(--fsu-green);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.25s ease, text-decoration 0.25s ease;
+}
+
+a:hover {
+  color: var(--fsu-gold);
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 2px solid var(--fsu-gold);
+  outline-offset: 2px;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--fsu-green);
+  font-weight: 500;
+  line-height: 1.3;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 0.875rem;
+  border-bottom: 2px solid var(--fsu-gold);
+  padding-bottom: 0.5rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Buttons */
+button, .btn {
+  background: linear-gradient(135deg, var(--fsu-green) 0%, var(--fsu-dark-green) 100%);
+  color: var(--fsu-white);
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 4px rgba(0, 86, 63, 0.2);
+}
+
+button:hover, .btn:hover {
+  background: linear-gradient(135deg, var(--fsu-gold) 0%, #D19B1F 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 86, 63, 0.3);
+}
+
+button:focus, .btn:focus {
+  outline: 2px solid var(--fsu-gold);
+  outline-offset: 2px;
+}
+
+button:active, .btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 86, 63, 0.2);
+}
+
+/* Secondary Button Style */
+.btn-secondary {
+  background: transparent;
+  color: var(--fsu-green);
+  border: 2px solid var(--fsu-green);
+}
+
+.btn-secondary:hover {
+  background: var(--fsu-green);
+  color: var(--fsu-white);
+}
+
+/* Cards and Containers */
+.card, .container {
+  background: var(--fsu-white);
+  border: 1px solid var(--fsu-medium-gray);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.25s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 86, 63, 0.15);
+}
+
+/* Form Elements */
+input, textarea, select {
+  border: 2px solid var(--fsu-medium-gray);
+  border-radius: 4px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  background-color: var(--fsu-white);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--fsu-green);
+  box-shadow: 0 0 0 3px rgba(0, 86, 63, 0.1);
+}
+
+/* Navigation */
+.nav, .navigation {
+  background-color: var(--fsu-light-gray);
+  border-bottom: 3px solid var(--fsu-gold);
+  padding: 1rem 0;
+}
+
+.nav-link {
+  color: var(--fsu-dark-gray);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.25s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--fsu-green);
+  color: var(--fsu-white);
+  text-decoration: none;
+}
+
+.nav-link.active {
+  background-color: var(--fsu-gold);
+  color: var(--fsu-green);
+  font-weight: 600;
+}
+
+/* Footer */
+.footer {
+  background: linear-gradient(135deg, var(--fsu-dark-gray) 0%, var(--fsu-green) 100%);
+  color: var(--fsu-white);
+  padding: 2rem;
+  margin-top: auto;
+  text-align: center;
+}
+
+.footer a {
+  color: var(--fsu-gold);
+}
+
+.footer a:hover {
+  color: var(--fsu-white);
+}
+
+/* Alert/Message Boxes */
+.alert {
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  border-left: 4px solid;
+}
+
+.alert-success {
+  background-color: #f0f9f4;
+  border-left-color: var(--fsu-green);
+  color: var(--fsu-dark-green);
+}
+
+.alert-warning {
+  background-color: #fffdf0;
+  border-left-color: var(--fsu-gold);
+  color: #7d6f1a;
+}
+
+.alert-info {
+  background-color: #f8fbff;
+  border-left-color: #3b82f6;
+  color: #1e40af;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+th {
+  background-color: var(--fsu-green);
+  color: var(--fsu-white);
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 500;
+}
+
+td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--fsu-medium-gray);
+}
+
+tr:nth-child(even) {
+  background-color: var(--fsu-light-gray);
+}
+
+/* Utility Classes */
+.text-primary { color: var(--fsu-green); }
+.text-secondary { color: var(--fsu-gold); }
+.text-muted { color: var(--fsu-dark-gray); }
+
+.bg-primary { background-color: var(--fsu-green); color: var(--fsu-white); }
+.bg-secondary { background-color: var(--fsu-gold); color: var(--fsu-green); }
+.bg-light { background-color: var(--fsu-light-gray); }
+
+.border-primary { border-color: var(--fsu-green); }
+.border-secondary { border-color: var(--fsu-gold); }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .fitchburg-header {
+    padding: 1rem;
+  }
+  
+  .fitchburg-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .main-content {
+    padding: 1rem;
+  }
+  
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.25rem; }
+}
+
+@media (max-width: 480px) {
+  .fitchburg-header h1 {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  button, .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Academic/University Specific Styles */
+.academic-program {
+  border-left: 4px solid var(--fsu-gold);
+  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.degree-info {
+  background: linear-gradient(135deg, var(--fsu-light-gray) 0%, #f9f9f9 100%);
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--fsu-medium-gray);
+}
+
+.campus-news {
+  border-top: 3px solid var(--fsu-green);
+}
+
+.student-resources {
+  background-color: rgba(0, 86, 63, 0.05);
+  border: 1px solid rgba(0, 86, 63, 0.2);
+}
+
+/* Loading and Interactive States */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--fsu-green);
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+  margin-left: 0.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Accessibility Improvements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus states for keyboard navigation */
+*:focus {
+  outline: 2px solid var(--fsu-gold);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --fsu-green: #003d2a;
+    --fsu-gold: #cc9900;
+  }
+}
 /* Fitchburg State University - SearchStax Branded CSS */
 /* Official FSU Colors: Green #00563F, Gold #E9AF2F */
 
