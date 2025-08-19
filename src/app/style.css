@@ -44,20 +44,23 @@ body {
   color: var(--fsu-white);
   padding: 1rem 2rem;
   box-shadow: 0 2px 4px rgba(0, 86, 63, 0.1);
+  max-height: 100px; /* Limit header height */
+  overflow: hidden; /* Prevent overflow */
 }
 
 .fitchburg-header h1 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.5rem; /* Reduced from 1.8rem */
   font-weight: 500;
   display: flex;
   align-items: center;
   gap: 1rem;
+  line-height: 1.2; /* Tighter line height */
 }
 
 .fitchburg-header .logo-placeholder {
-  width: 40px;
-  height: 40px;
+  width: 35px; /* Reduced from 40px */
+  height: 35px; /* Reduced from 40px */
   background-color: var(--fsu-gold);
   border-radius: 50%;
   display: flex;
@@ -65,7 +68,14 @@ body {
   justify-content: center;
   font-weight: bold;
   color: var(--fsu-green);
-  font-size: 1.2rem;
+  font-size: 1rem; /* Reduced from 1.2rem */
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.fitchburg-header p {
+  margin: 0 !important;
+  font-size: 0.8rem; /* Smaller tagline */
+  line-height: 1.1;
 }
 
 /* Footer */
@@ -94,9 +104,11 @@ body {
   padding: 15px 20px 10px 20px;
   border-radius: 50px;
   height: 40px;
+  max-height: 60px; /* Prevent oversized input */
   background: linear-gradient(135deg, var(--fsu-white) 0%, #f9f9f9 100%);
   box-shadow: 0 4px 12px rgba(0, 86, 63, 0.15);
   transition: all 0.25s ease;
+  overflow: hidden; /* Hide any oversized content */
 }
 
 .searchstax-search-input-container:focus-within {
@@ -207,16 +219,19 @@ body {
 /* Search Icons */
 .searchstax-search-icon,
 .searchstax-search-close {
-  max-width: 32px;
-  height: 32px;
-  width: 32px;
+  max-width: 32px !important;
+  height: 32px !important;
+  width: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
   display: block;
   background: none;
-  background-size: 100%;
+  background-size: 65% !important;
   background-position: center center;
   background-repeat: no-repeat;
   border: none;
   border-radius: 6px;
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .searchstax-search-icon {
@@ -706,13 +721,26 @@ body {
 }
 
 /* ================================
-   PAGE LAYOUT - FSU BRANDED
+   PAGE LAYOUT CONTROLS
    ================================ */
+/* Ensure main content area doesn't get oversized */
 .searchstax-page-layout-container {
   font-family: "Roboto", Arial, sans-serif;
   margin: 0 auto;
   max-width: 1200px;
   padding: 0 1rem;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.searchstax-page-layout-container > * {
+  max-width: 100% !important;
+}
+
+/* Control the search input area specifically */
+.searchstax-page-layout-container .mb-6,
+.searchstax-page-layout-container > div:first-child {
+  max-height: 100px !important;
+  overflow: hidden !important;
 }
 
 .searchstax-page-layout-container .searchstax-page-layout-facet-result-container {
@@ -772,6 +800,31 @@ body {
     flex-direction: column;
     gap: 10px;
   }
+
+  /* Mobile Header Fixes */
+  .fitchburg-header {
+    padding: 0.75rem 1rem; /* Reduced padding on mobile */
+    max-height: 80px; /* Smaller max height on mobile */
+  }
+  
+  .fitchburg-header h1 {
+    font-size: 1.2rem; /* Even smaller on mobile */
+    gap: 0.5rem;
+  }
+  
+  .fitchburg-header .logo-placeholder {
+    width: 30px; /* Smaller logo on mobile */
+    height: 30px;
+    font-size: 0.9rem;
+  }
+
+  .fitchburg-header p {
+    font-size: 0.7rem; /* Tiny tagline on mobile */
+  }
+
+  .fitchburg-header nav {
+    display: none !important; /* Hide nav on mobile */
+  }
 }
 
 @media (min-width: 768px) {
@@ -820,8 +873,56 @@ body {
 }
 
 /* ================================
-   UTILITY CLASSES
+   PREVENT OVERSIZED SEARCH ELEMENTS
    ================================ */
+/* Hide any large images in search widgets */
+.searchstax-page-layout-container img:not(.searchstax-thumbnail):not(.logo-placeholder) {
+  max-height: 50px !important;
+  max-width: 200px !important;
+}
+
+/* Specifically target any oversized search logos or images */
+.searchstax-search-input-container img,
+.searchstax-input-widget img,
+.searchstax-wrapper img:not(.searchstax-thumbnail) {
+  max-height: 32px !important;
+  max-width: 32px !important;
+}
+
+/* Hide any large background images that might be causing issues */
+.searchstax-search-input-container::before,
+.searchstax-search-input-container::after {
+  display: none !important;
+}
+
+/* Ensure no element in search area gets too large */
+.searchstax-search-input-container > *,
+.searchstax-input-widget > * {
+  max-height: 50px !important;
+}
+
+/* Fix for any SearchStax logo or branding images */
+.searchstax-logo,
+.searchstax-branding,
+[class*="logo"]:not(.logo-placeholder) {
+  max-height: 40px !important;
+  max-width: 150px !important;
+}
+
+/* Emergency rule to hide extremely large images */
+img[height="200"],
+img[height="300"],
+img[height="400"],
+img[height="500"],
+img[width="200"],
+img[width="300"],
+img[width="400"],
+img[width="500"] {
+  max-height: 50px !important;
+  max-width: 150px !important;
+  height: auto !important;
+  width: auto !important;
+}
 .text-primary { color: var(--fsu-green); }
 .text-secondary { color: var(--fsu-gold); }
 .text-muted { color: var(--fsu-dark-gray); }
