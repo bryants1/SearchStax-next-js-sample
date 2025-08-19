@@ -1,263 +1,999 @@
-'use client'
+/* Fitchburg State University Branded Main CSS */
+:root {
+  /* Official Fitchburg State University Colors */
+  --fsu-green: #00563F;           /* PMS 343 Green - Primary Brand Color */
+  --fsu-gold: #E9AF2F;            /* PMS 123 Yellow/Gold - Secondary Brand Color */
+  --fsu-dark-green: #024D36;      /* Athletic Department Dark Green */
+  --fsu-orange: #FBBF16;          /* Athletic Department Orange */
+  --fsu-white: #FFFFFF;
+  --fsu-light-gray: #F5F5F5;
+  --fsu-medium-gray: #E6E9EC;
+  --fsu-dark-gray: #33475A;
+  --fsu-text-dark: #213547;
+  
+  /* Typography */
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color-scheme: light;
+  color: var(--fsu-text-dark);
+  background-color: var(--fsu-white);
+  
+  /* Enhanced rendering */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-import React from 'react';
-import {
-  SearchstaxWrapper,
-  SearchstaxInputWidget,
-  SearchstaxResultWidget,
-  SearchstaxPaginationWidget,
-  SearchstaxOverviewWidget,
-  SearchstaxFacetsWidget,
-  SearchstaxSortingWidget,
-  SearchstaxRelatedSearchesWidget,
-  SearchstaxExternalPromotionsWidget,
-  SearchstaxAnswerWidget,
-} from '@searchstax-inc/searchstudio-ux-react';
+/* Body and Layout */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--fsu-white);
+  color: var(--fsu-text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-// Import CSS
-import './style.css';
+/* Header Styling */
+.fitchburg-header {
+  background: linear-gradient(135deg, var(--fsu-green) 0%, var(--fsu-dark-green) 100%);
+  color: var(--fsu-white);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 86, 63, 0.1);
+}
 
-export default function Home() {
-  // Your working config - inline instead of external file
-  const searchConfig = {
-    language: 'en',
-    searchURL: 'https://searchcloud-2-us-east-1.searchstax.com/29847/bryanttestingapplication-4880/emselect',
-    suggesterURL: 'https://searchcloud-2-us-east-1.searchstax.com/29847/bryanttestingapplication-4880_suggester/emsuggest',
-    trackApiKey: 'Es7QVy5PXoiT23M1Y0OrwMM0AJcDkNg39eJg96o9CuM',
-    searchAuth: '4abcbd4a233b958b02340f3c21bd05c6331d2e62',
-    authType: 'token' as const,
-    analyticsBaseUrl: 'https://analytics-us.searchstax.com',
-    questionURL: 'https://search-ai-us.searchstax.com/api/v1/4880/answer/',
-    relatedSearchesURL: 'https://app.searchstax.com/api/v1/4880/related-search/',
-    relatedSearchesAPIKey: 'f259bba1449c13609cf8c27693c33cebef9c3442',
-    model: 'Default',
-    router: {
-      enabled: true,
-    },
-  };
+.fitchburg-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 
-  const initialized = (searchstax: any) => {
-    console.log('SearchStax initialized successfully!', searchstax);
-  };
+.fitchburg-header .logo-placeholder {
+  width: 40px;
+  height: 40px;
+  background-color: var(--fsu-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--fsu-green);
+  font-size: 1.2rem;
+}
 
-  const beforeSearch = (props: any) => {
-    console.log('Before search:', props);
-    return props;
-  };
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
 
-  const afterSearch = (results: any) => {
-    console.log('After search:', results);
-    console.log('Number of results:', results?.length);
-    return results;
-  };
+/* Links */
+a {
+  color: var(--fsu-green);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.25s ease, text-decoration 0.25s ease;
+}
 
-  return (
-    <div className="min-h-screen" style={{ backgroundColor: '#FFFFFF' }}>
-      {/* Fitchburg State University Header */}
-      <header className="fitchburg-header">
-        <div className="max-w-6xl mx-auto px-4 py-2">
-          <div className="flex items-center justify-between">
-            {/* University Logo and Name */}
-            <div className="flex items-center gap-4">
-              <div className="logo-placeholder">
-                FSU
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-white mb-0">
-                  Fitchburg State University
-                </h1>
-                <p className="text-sm opacity-90 mb-0" style={{ color: '#E9AF2F' }}>
-                  Search University Resources
-                </p>
-              </div>
-            </div>
-            
-            {/* Optional Navigation Links */}
-            <nav className="hidden md:flex items-center gap-6">
-              <a 
-                href="https://www.fitchburgstate.edu/" 
-                className="text-white hover:text-yellow-300 transition-colors duration-200 text-sm font-medium"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                University Home
-              </a>
-              <a 
-                href="https://www.fitchburgstate.edu/academics/" 
-                className="text-white hover:text-yellow-300 transition-colors duration-200 text-sm font-medium"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Academics
-              </a>
-              <a 
-                href="https://www.fitchburgstate.edu/admissions/" 
-                className="text-white hover:text-yellow-300 transition-colors duration-200 text-sm font-medium"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Admissions
-              </a>
-            </nav>
-          </div>
-        </div>
-      </header>
+a:hover {
+  color: var(--fsu-gold);
+  text-decoration: underline;
+}
 
-      {/* University Search Information Bar */}
-      <div className="bg-gray-50 border-b-2" style={{ borderBottomColor: '#E9AF2F' }}>
-        <div className="max-w-6xl mx-auto px-4 py-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <svg 
-                className="w-5 h-5" 
-                style={{ color: '#00563F' }}
-                fill="currentColor" 
-                viewBox="0 0 20 20"
-              >
-                <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
-              </svg>
-              <span className="text-sm font-medium" style={{ color: '#00563F' }}>
-                Search academic programs, faculty, news, and university resources
-              </span>
-            </div>
-            <div className="text-xs text-gray-600 hidden sm:block">
-              Powered by SearchStax
-            </div>
-          </div>
-        </div>
-      </div>
+a:focus {
+  outline: 2px solid var(--fsu-gold);
+  outline-offset: 2px;
+}
 
-      {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-4 py-8">
-        <SearchstaxWrapper
-          language={searchConfig.language}
-          searchURL={searchConfig.searchURL}
-          suggesterURL={searchConfig.suggesterURL}
-          trackApiKey={searchConfig.trackApiKey}
-          searchAuth={searchConfig.searchAuth}
-          authType={searchConfig.authType}
-          analyticsBaseUrl={searchConfig.analyticsBaseUrl}
-          questionURL={searchConfig.questionURL}
-          router={searchConfig.router}
-          initialized={initialized}
-          beforeSearch={beforeSearch}
-          afterSearch={afterSearch}
-        >
-          <div className="searchstax-page-layout-container">
-            {/* Search Input with FSU Branding */}
-            <div className="mb-6">
-              <SearchstaxInputWidget
-                suggestAfterMinChars={3}
-                placeholder="Search Fitchburg State University..."
-              />
-            </div>
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--fsu-green);
+  font-weight: 500;
+  line-height: 1.3;
+  margin-top: 0;
+}
 
-            {/* Smart Answers */}
-            <SearchstaxAnswerWidget
-              showShowMoreAfterWordCount={100}
-            />
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
 
-            {/* Search Overview & Sorting */}
-            <div className="search-details-container mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-              <SearchstaxOverviewWidget />
-              <SearchstaxSortingWidget />
-            </div>
+h2 {
+  font-size: 2rem;
+  margin-bottom: 0.875rem;
+  border-bottom: 2px solid var(--fsu-gold);
+  padding-bottom: 0.5rem;
+}
 
-            <div className="searchstax-page-layout-facet-result-container flex flex-col lg:flex-row gap-8">
-              {/* Facets Sidebar */}
-              <div className="searchstax-page-layout-facet-container w-full lg:w-64 flex-shrink-0">
-                <div className="sticky top-4">
-                  <div className="bg-white rounded-lg shadow-sm border-2 p-4 mb-4" style={{ borderColor: '#E9AF2F' }}>
-                    <h3 className="font-semibold mb-2" style={{ color: '#00563F' }}>
-                      Filter Results
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      Use the filters below to narrow your search results.
-                    </p>
-                  </div>
-                  
-                  <SearchstaxFacetsWidget
-                    facetingType="and"
-                    itemsPerPageDesktop={5}
-                    itemsPerPageMobile={10}
-                  />
-                </div>
-              </div>
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
 
-              {/* Results */}
-              <div className="searchstax-page-layout-result-container flex-1">
-                {/* External Promotions */}
-                <SearchstaxExternalPromotionsWidget />
+/* Buttons */
+button, .btn {
+  background: linear-gradient(135deg, var(--fsu-green) 0%, var(--fsu-dark-green) 100%);
+  color: var(--fsu-white);
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 4px rgba(0, 86, 63, 0.2);
+}
 
-                {/* Search Results */}
-                <SearchstaxResultWidget
-                  renderMethod="pagination"
-                />
+button:hover, .btn:hover {
+  background: linear-gradient(135deg, var(--fsu-gold) 0%, #D19B1F 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 86, 63, 0.3);
+}
 
-                {/* Related Searches */}
-                <div className="mt-8">
-                  <SearchstaxRelatedSearchesWidget
-                    relatedSearchesURL={searchConfig.relatedSearchesURL}
-                    relatedSearchesAPIKey={searchConfig.relatedSearchesAPIKey}
-                  />
-                </div>
+button:focus, .btn:focus {
+  outline: 2px solid var(--fsu-gold);
+  outline-offset: 2px;
+}
 
-                {/* Pagination */}
-                <SearchstaxPaginationWidget />
-              </div>
-            </div>
-          </div>
-        </SearchstaxWrapper>
-      </main>
+button:active, .btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 86, 63, 0.2);
+}
 
-      {/* University Footer */}
-      <footer className="footer mt-16">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-4">
-              <div className="logo-placeholder">
-                FSU
-              </div>
-              <div>
-                <p className="font-semibold mb-1">Fitchburg State University</p>
-                <p className="text-sm opacity-90">
-                  160 Pearl Street, Fitchburg, MA 01420
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row items-center gap-4 text-sm">
-              <a 
-                href="https://www.fitchburgstate.edu/about/contact-us" 
-                className="hover:text-yellow-300 transition-colors duration-200"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Contact Us
-              </a>
-              <a 
-                href="https://www.fitchburgstate.edu/about/directory" 
-                className="hover:text-yellow-300 transition-colors duration-200"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Directory
-              </a>
-              <a 
-                href="https://www.fitchburgstate.edu/campus-life/events" 
-                className="hover:text-yellow-300 transition-colors duration-200"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Events
-              </a>
-              <span className="text-xs opacity-75">
-                © 2025 Fitchburg State University
-              </span>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
+/* Secondary Button Style */
+.btn-secondary {
+  background: transparent;
+  color: var(--fsu-green);
+  border: 2px solid var(--fsu-green);
+}
+
+.btn-secondary:hover {
+  background: var(--fsu-green);
+  color: var(--fsu-white);
+}
+
+/* Cards and Containers */
+.card, .container {
+  background: var(--fsu-white);
+  border: 1px solid var(--fsu-medium-gray);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.25s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 86, 63, 0.15);
+}
+
+/* Form Elements */
+input, textarea, select {
+  border: 2px solid var(--fsu-medium-gray);
+  border-radius: 4px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  background-color: var(--fsu-white);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--fsu-green);
+  box-shadow: 0 0 0 3px rgba(0, 86, 63, 0.1);
+}
+
+/* Navigation */
+.nav, .navigation {
+  background-color: var(--fsu-light-gray);
+  border-bottom: 3px solid var(--fsu-gold);
+  padding: 1rem 0;
+}
+
+.nav-link {
+  color: var(--fsu-dark-gray);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.25s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--fsu-green);
+  color: var(--fsu-white);
+  text-decoration: none;
+}
+
+.nav-link.active {
+  background-color: var(--fsu-gold);
+  color: var(--fsu-green);
+  font-weight: 600;
+}
+
+/* Footer */
+.footer {
+  background: linear-gradient(135deg, var(--fsu-dark-gray) 0%, var(--fsu-green) 100%);
+  color: var(--fsu-white);
+  padding: 2rem;
+  margin-top: auto;
+  text-align: center;
+}
+
+.footer a {
+  color: var(--fsu-gold);
+}
+
+.footer a:hover {
+  color: var(--fsu-white);
+}
+
+/* Alert/Message Boxes */
+.alert {
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  border-left: 4px solid;
+}
+
+.alert-success {
+  background-color: #f0f9f4;
+  border-left-color: var(--fsu-green);
+  color: var(--fsu-dark-green);
+}
+
+.alert-warning {
+  background-color: #fffdf0;
+  border-left-color: var(--fsu-gold);
+  color: #7d6f1a;
+}
+
+.alert-info {
+  background-color: #f8fbff;
+  border-left-color: #3b82f6;
+  color: #1e40af;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+th {
+  background-color: var(--fsu-green);
+  color: var(--fsu-white);
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 500;
+}
+
+td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--fsu-medium-gray);
+}
+
+tr:nth-child(even) {
+  background-color: var(--fsu-light-gray);
+}
+
+/* Utility Classes */
+.text-primary { color: var(--fsu-green); }
+.text-secondary { color: var(--fsu-gold); }
+.text-muted { color: var(--fsu-dark-gray); }
+
+.bg-primary { background-color: var(--fsu-green); color: var(--fsu-white); }
+.bg-secondary { background-color: var(--fsu-gold); color: var(--fsu-green); }
+.bg-light { background-color: var(--fsu-light-gray); }
+
+.border-primary { border-color: var(--fsu-green); }
+.border-secondary { border-color: var(--fsu-gold); }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .fitchburg-header {
+    padding: 1rem;
+  }
+  
+  .fitchburg-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .main-content {
+    padding: 1rem;
+  }
+  
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.25rem; }
+}
+
+@media (max-width: 480px) {
+  .fitchburg-header h1 {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  button, .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Academic/University Specific Styles */
+.academic-program {
+  border-left: 4px solid var(--fsu-gold);
+  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.degree-info {
+  background: linear-gradient(135deg, var(--fsu-light-gray) 0%, #f9f9f9 100%);
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--fsu-medium-gray);
+}
+
+.campus-news {
+  border-top: 3px solid var(--fsu-green);
+}
+
+.student-resources {
+  background-color: rgba(0, 86, 63, 0.05);
+  border: 1px solid rgba(0, 86, 63, 0.2);
+}
+
+/* Loading and Interactive States */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--fsu-green);
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+  margin-left: 0.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Accessibility Improvements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus states for keyboard navigation */
+*:focus {
+  outline: 2px solid var(--fsu-gold);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --fsu-green: #003d2a;
+    --fsu-gold: #cc9900;
+  }
+}
+/* Fitchburg State University - SearchStax Branded CSS */
+/* Official FSU Colors: Green #00563F, Gold #E9AF2F */
+
+:root {
+  --fsu-green: #00563F;
+  --fsu-gold: #E9AF2F;
+  --fsu-dark-green: #024D36;
+  --fsu-white: #FFFFFF;
+  --fsu-light-gray: #F5F5F5;
+  --fsu-medium-gray: #E6E9EC;
+  --fsu-dark-gray: #33475A;
+  --fsu-text-dark: #213547;
+}
+
+/* Search Input Container - FSU Branded */
+.searchstax-search-input-container {
+  position: relative;
+  border: 2px solid var(--fsu-green);
+  padding: 15px 20px 10px 20px;
+  border-radius: 50px;
+  height: 40px;
+  position: relative;
+  background: linear-gradient(135deg, var(--fsu-white) 0%, #f9f9f9 100%);
+  box-shadow: 0 4px 12px rgba(0, 86, 63, 0.15);
+}
+
+.searchstax-search-input-container:focus-within {
+  border-color: var(--fsu-gold);
+  box-shadow: 0 4px 16px rgba(233, 175, 47, 0.25);
+}
+
+.searchstax-search-input-container.searchstax-search-input-container-new {
+  display: flex;
+}
+
+.searchstax-search-input-container.searchstax-alternative-render {
+  box-shadow: 0 2px 8px rgba(0, 86, 63, 0.1) !important;
+  border: 2px solid var(--fsu-green);
+}
+
+.searchstax-search-input-container.searchstax-alternative-render .searchstax-search-input-wrapper {
+  position: relative;
+}
+
+.searchstax-search-input-container.searchstax-alternative-render .searchstax-search-input-wrapper .searchstax-autosuggest-container {
+  margin-top: 32px !important;
+}
+
+.searchstax-search-input-container.searchstax-alternative-render .searchstax-search-input-wrapper input {
+  border-radius: 8px;
+  border: 2px solid var(--fsu-green);
+  font-size: 16px;
+  font-size: 14px;
+  padding: 0 15px;
+  background-color: var(--fsu-white);
+}
+
+.searchstax-search-input-container.searchstax-alternative-render .searchstax-search-icon {
+  margin-top: 4px;
+  border-radius: 8px;
+  background-size: 60%;
+  background-color: var(--fsu-green);
+  background-image: url("data:image/svg+xml; base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI3MnB4IiBoZWlnaHQ9IjcycHgiIHZpZXdCb3g9IjAgMCA3MiA3MiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNzIgNzIiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNNTQuMDM2LDQ4LjAzOEw3MS40MTksNjUuNDNsLTUuNTUxLDQuOTYzTDQ5LjUxMiw1NC4wMzNjLTUuMjIsNC4yMy0xMS44NzEsNi43NTktMTkuMTEsNi43NTkKCUMxMy42MTMsNjAuNzkyLDAsNDcuMTgxLDAsMzAuMzk3QzAsMTMuNjA5LDEzLjYxMywwLDMwLjQwMSwwYzE2Ljc4NiwwLDMwLjM5NiwxMy42MDksMzAuMzk2LDMwLjM5NwoJYzAsNy4yNDItMi41MzQsMTMuODg4LTYuNzYyLDE5LjExMVY0OC4wMzh6IE0zMC40MTQsNTIuNzFjMTIuMzM5LDAsMjIuMzQyLTEwLDIyLjM0Mi0yMi4zNDFjMC0xMi4zMzktMTAuMDAzLTIyLjMzOS0yMi4zNDItMjIuMzM5CgljLTEyLjM0MSwwLTIyLjM0MSwxMC0yMi4zNDEsMjIuMzM5QzguMDczLDQyLjcxLDE4LjA3Myw1Mi43MSwzMC40MTQsNTIuNzEiLz4KPC9zdmc+Cg==");
+  transition: all 0.25s ease;
+}
+
+.searchstax-search-input-container.searchstax-alternative-render .searchstax-search-icon:hover {
+  background-color: var(--fsu-gold);
+  transform: scale(1.05);
+}
+
+.searchstax-search-input-container.searchstax-alternative-render .searchstax-search-close {
+  margin-top: 4px;
+  border-radius: 8px;
+  background-size: 60%;
+  background-color: var(--fsu-green);
+  background-image: url("data:image/svg+xml; base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI1LjAuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA0OCA0OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDggNDg7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojRkZGRkZGO30KPC9zdHlsZT4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTI2LjksMjQuMWw2LjQsNi40YzAuOCwwLjgsMC44LDIsMCwyLjhjLTAuOCwwLjgtMiwwLjgtMi44LDBMMjQsMjYuOWwtNi40LDYuNGMtMC44LDAuOC0yLDAuOC0yLjgsMAoJYy0wLjgtMC44LTAuOC0yLDAtMi44bDYuNC02LjRsLTYuNC02LjRjLTAuOC0wLjgtMC44LTIsMC0yLjhjMC44LTAuOCwyLTAuOCwyLjgsMGw2LjQsNi40bDYuNC02LjRjMC44LTAuOCwyLTAuOCwyLjgsMAoJYzAuOCwwLjgsMC44LDIsMCwyLjhMMjYuOSwyNC4xeiBNMjQsNDguMWMtMTMuMywwLTI0LTEwLjctMjQtMjRzMTAuNy0yNCwyNC0yNHMyNCwxMC43LDI0LDI0UzM3LjMsNDguMSwyNCw0OC4xeiBNMjQsNDMuNAoJYzEwLjcsMCwxOS40LTguNywxOS40LTE5LjRTMzQuNyw0LjcsMjQsNC43UzQuNiwxMy4zLDQuNiwyNC4xUzEzLjMsNDMuNCwyNCw0My40eiIvPgo8L3N2Zz4K");
+  transition: all 0.25s ease;
+}
+
+.searchstax-search-input-container.searchstax-alternative-render .searchstax-search-close:hover {
+  background-color: var(--fsu-gold);
+  transform: scale(1.05);
+}
+
+/* Search Icons - FSU Branded */
+.searchstax-search-icon,
+.searchstax-search-close,
+.searchstax-spinner-icon {
+  cursor: pointer;
+  margin-top: 3px;
+  transition: all 0.25s ease;
+}
+
+.searchstax-search-icon:focus,
+.searchstax-search-close:focus,
+.searchstax-spinner-icon:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(233, 175, 47, 0.4);
+  z-index: 3;
+  border-radius: 4px;
+}
+
+.searchstax-search-input {
+  width: calc(100% - 10px);
+  height: 30px;
+  font-size: 18px;
+  z-index: 2;
+  border: none;
+  font-family: "Roboto", Arial, sans-serif;
+  color: var(--fsu-text-dark);
+}
+
+.searchstax-search-input:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.searchstax-search-input::placeholder {
+  color: var(--fsu-dark-gray);
+  opacity: 0.7;
+}
+
+/* Search Icons */
+.searchstax-search-icon,
+.searchstax-search-close {
+  max-width: 32px;
+  height: 32px;
+  width: 32px;
+  display: block;
+  background: none;
+  background-size: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 6px;
+}
+
+.searchstax-search-icon {
+  background-color: var(--fsu-green);
+  background-image: url("data:image/svg+xml; base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI3MnB4IiBoZWlnaHQ9IjcycHgiIHZpZXdCb3g9IjAgMCA3MiA3MiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNzIgNzIiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNNTQuMDM2LDQ4LjAzOEw3MS40MTksNjUuNDNsLTUuNTUxLDQuOTYzTDQ5LjUxMiw1NC4wMzNjLTUuMjIsNC4yMy0xMS44NzEsNi43NTktMTkuMTEsNi43NTkKCUMxMy42MTMsNjAuNzkyLDAsNDcuMTgxLDAsMzAuMzk3QzAsMTMuNjA5LDEzLjYxMywwLDMwLjQwMSwwYzE2Ljc4NiwwLDMwLjM5NiwxMy42MDksMzAuMzk2LDMwLjM5NwoJYzAsNy4yNDItMi41MzQsMTMuODg4LTYuNzYyLDE5LjExMVY0OC4wMzh6IE0zMC40MTQsNTIuNzFjMTIuMzM5LDAsMjIuMzQyLTEwLDIyLjM0Mi0yMi4zNDFjMC0xMi4zMzktMTAuMDAzLTIyLjMzOS0yMi4zNDItMjIuMzM5CgljLTEyLjM0MSwwLTIyLjM0MSwxMC0yMi4zNDEsMjIuMzM5QzguMDczLDQyLjcxLDE4LjA3Myw1Mi43MSwzMC40MTQsNTIuNzEiLz4KPC9zdmc+Cg==");
+  background-size: 65%;
+}
+
+.searchstax-search-icon:hover {
+  background-color: var(--fsu-gold);
+  transform: scale(1.05);
+}
+
+.searchstax-search-close {
+  background-color: var(--fsu-green);
+  background-image: url("data:image/svg+xml; base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI1LjAuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA0OCA0OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDggNDg7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojRkZGRkZGO30KPC9zdHlsZT4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTI2LjksMjQuMWw2LjQsNi40YzAuOCwwLjgsMC44LDIsMCwyLjhjLTAuOCwwLjgtMiwwLjgtMi44LDBMMjQsMjYuOWwtNi40LDYuNGMtMC44LDAuOC0yLDAuOC0yLjgsMAoJYy0wLjgtMC44LTAuOC0yLDAtMi44bDYuNC02LjRsLTYuNC02LjRjLTAuOC0wLjgtMC44LTIsMC0yLjhjMC44LTAuOCwyLTAuOCwyLjgsMGw2LjQsNi40bDYuNC02LjRjMC44LTAuOCwyLTAuOCwyLjgsMAoJYzAuOCwwLjgsMC44LDIsMCwyLjhMMjYuOSwyNC4xeiBNMjQsNDguMWMtMTMuMywwLTI0LTEwLjctMjQtMjRzMTAuNy0yNCwyNC0yNHMyNCwxMC43LDI0LDI0UzM3LjMsNDguMSwyNCw0OC4xeiBNMjQsNDMuNAoJYzEwLjcsMCwxOS40LTguNywxOS40LTE5LjRTMzQuNyw0LjcsMjQsNC43UzQuNiwxMy4zLDQuNiwyNC4xUzEzLjMsNDMuNCwyNCw0My40eiIvPgo8L3N2Zz4K");
+  background-size: 65%;
+}
+
+.searchstax-search-close:hover {
+  background-color: var(--fsu-gold);
+  transform: scale(1.05);
+}
+
+/* Spinner - FSU Branded */
+@keyframes spinner-border {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.searchstax-spinner-icon {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  vertical-align: text-bottom;
+  border: 3px solid var(--fsu-green);
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: spinner-border 0.75s linear infinite;
+  animation: spinner-border 0.75s linear infinite;
+  background: none;
+}
+
+/* Autosuggest Container */
+.searchstax-autosuggest-container {
+  position: absolute;
+  z-index: 1000;
+  left: 0;
+  margin-top: 50px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 86, 63, 0.15);
+  background-color: var(--fsu-white);
+  border: 1px solid var(--fsu-green);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.searchstax-autosuggest-container.hidden {
+  display: none;
+}
+
+.searchstax-autosuggest-container .searchstax-autosuggest-item {
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid var(--fsu-medium-gray);
+}
+
+.searchstax-autosuggest-container .searchstax-autosuggest-item:last-child {
+  border-bottom: none;
+}
+
+.searchstax-autosuggest-container .searchstax-autosuggest-item.active {
+  background-color: var(--fsu-green);
+  color: var(--fsu-white);
+}
+
+.searchstax-autosuggest-container .searchstax-autosuggest-item:hover {
+  background-color: var(--fsu-light-gray);
+}
+
+.searchstax-autosuggest-container .searchstax-autosuggest-item.active:hover {
+  background-color: var(--fsu-dark-green);
+}
+
+.searchstax-autosuggest-container .searchstax-autosuggest-item .searchstax-autosuggest-item-term-container {
+  width: calc(100% - 40px);
+  height: 40px;
+  font-size: 14px;
+  line-height: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+/* Search Results - FSU Branded */
+.searchstax-search-result {
+  position: relative;
+  padding: 24px 16px;
+  margin-bottom: 20px;
+  color: var(--fsu-text-dark);
+  border: 2px solid var(--fsu-medium-gray);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 86, 63, 0.08);
+  transition: all 0.25s ease;
+  background: linear-gradient(135deg, var(--fsu-white) 0%, #fefefe 100%);
+}
+
+.searchstax-search-result:hover {
+  border-color: var(--fsu-green);
+  box-shadow: 0 8px 24px rgba(0, 86, 63, 0.15);
+  transform: translateY(-2px);
+}
+
+.searchstax-search-result .searchstax-search-result-title {
+  color: var(--fsu-green);
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.searchstax-search-result .searchstax-search-result-title:hover {
+  color: var(--fsu-gold);
+}
+
+.searchstax-search-result .searchstax-search-result-description {
+  color: var(--fsu-text-dark);
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.searchstax-search-result .searchstax-search-result-common {
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  margin-bottom: 5px;
+  word-wrap: break-word;
+}
+
+/* Result Links */
+.searchstax-result-item-link-wrapping {
+  color: var(--fsu-green);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.searchstax-result-item-link-wrapping:hover {
+  color: var(--fsu-gold);
+}
+
+.searchstax-result-item-link-wrapping:focus-visible {
+  box-shadow: 0 0 0 3px rgba(233, 175, 47, 0.4);
+  outline: none;
+  border-radius: 4px;
+}
+
+/* Pagination - FSU Branded */
+.searchstax-pagination-container {
+  width: 100%;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.searchstax-pagination-container .searchstax-pagination-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.searchstax-pagination-container .searchstax-pagination-previous,
+.searchstax-pagination-container .searchstax-pagination-next {
+  color: var(--fsu-green);
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--fsu-green);
+  border-radius: 6px;
+  transition: all 0.25s ease;
+  font-weight: 500;
+}
+
+.searchstax-pagination-container .searchstax-pagination-previous:hover,
+.searchstax-pagination-container .searchstax-pagination-next:hover {
+  background-color: var(--fsu-green);
+  color: var(--fsu-white);
+}
+
+.searchstax-pagination-container .searchstax-pagination-previous:focus-visible,
+.searchstax-pagination-container .searchstax-pagination-next:focus-visible {
+  box-shadow: 0 0 0 3px rgba(233, 175, 47, 0.4);
+  outline: none;
+}
+
+.searchstax-pagination-container .searchstax-pagination-previous.disabled,
+.searchstax-pagination-container .searchstax-pagination-next.disabled {
+  color: var(--fsu-dark-gray);
+  border-color: var(--fsu-medium-gray);
+  cursor: not-allowed;
+}
+
+.searchstax-pagination-container .searchstax-pagination-details {
+  color: var(--fsu-text-dark);
+  margin: 0 10px;
+  font-weight: 500;
+}
+
+/* Facets - FSU Branded */
+.searchstax-facets-container-desktop .searchstax-facet-container,
+.searchstax-facets-container-mobile .searchstax-facet-container {
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--fsu-gold);
+  margin-bottom: 20px;
+  background-color: var(--fsu-white);
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 86, 63, 0.05);
+}
+
+.searchstax-facets-container-desktop .searchstax-facet-container:last-child,
+.searchstax-facets-container-mobile .searchstax-facet-container:last-child {
+  border-bottom: 2px solid var(--fsu-gold);
+  margin-bottom: 0px;
+}
+
+.searchstax-facets-container-desktop .searchstax-facet-container .searchstax-facet-title,
+.searchstax-facets-container-mobile .searchstax-facet-container .searchstax-facet-title {
+  color: var(--fsu-green);
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+.searchstax-facets-container-desktop .searchstax-facet-container .searchstax-facet-title:focus-visible,
+.searchstax-facets-container-mobile .searchstax-facet-container .searchstax-facet-title:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(233, 175, 47, 0.4);
+  border-radius: 4px;
+}
+
+.searchstax-facets-container-desktop .searchstax-facet-container .searchstax-facet-values-container .searchstax-facet-value-container,
+.searchstax-facets-container-mobile .searchstax-facet-container .searchstax-facet-values-container .searchstax-facet-value-container {
+  display: flex;
+  padding: 0.5rem 0;
+  transition: background-color 0.2s ease;
+}
+
+.searchstax-facets-container-desktop .searchstax-facet-container .searchstax-facet-values-container .searchstax-facet-value-container:hover,
+.searchstax-facets-container-mobile .searchstax-facet-container .searchstax-facet-values-container .searchstax-facet-value-container:hover {
+  background-color: var(--fsu-light-gray);
+  border-radius: 4px;
+  padding-left: 0.5rem;
+}
+
+.searchstax-facets-container-desktop .searchstax-facet-container .searchstax-facet-values-container .searchstax-facet-value-container .searchstax-facet-input-checkbox:focus-visible,
+.searchstax-facets-container-mobile .searchstax-facet-container .searchstax-facet-values-container .searchstax-facet-value-container .searchstax-facet-input-checkbox:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(233, 175, 47, 0.4);
+}
+
+.searchstax-facets-container-desktop .searchstax-facet-container .searchstax-facet-values-container .searchstax-facet-value-container .searchstax-facet-value-label,
+.searchstax-facets-container-mobile .searchstax-facet-container .searchstax-facet-values-container .searchstax-facet-value-container .searchstax-facet-value-label {
+  margin-left: 8px;
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--fsu-text-dark);
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+.searchstax-facets-container-desktop .searchstax-facet-container .searchstax-facet-values-container .searchstax-facet-value-container .searchstax-facet-value-count,
+.searchstax-facets-container-mobile .searchstax-facet-container .searchstax-facet-values-container .searchstax-facet-value-container .searchstax-facet-value-count {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--fsu-green);
+  background-color: var(--fsu-light-gray);
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Show More Buttons */
+.searchstax-facets-container-desktop .searchstax-facet-container .searchstax-facet-show-more-container .searchstax-facet-show-button,
+.searchstax-facets-container-mobile .searchstax-facet-container .searchstax-facet-show-more-container .searchstax-facet-show-button {
+  text-transform: uppercase;
+  color: var(--fsu-green);
+  font-size: 14px;
+  margin-top: 8px;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--fsu-green);
+  border-radius: 6px;
+  background-color: transparent;
+  transition: all 0.25s ease;
+  font-weight: 500;
+}
+
+.searchstax-facets-container-desktop .searchstax-facet-container .searchstax-facet-show-more-container .searchstax-facet-show-button:hover,
+.searchstax-facets-container-mobile .searchstax-facet-container .searchstax-facet-show-more-container .searchstax-facet-show-button:hover {
+  background-color: var(--fsu-green);
+  color: var(--fsu-white);
+}
+
+.searchstax-facets-container-desktop .searchstax-facet-container .searchstax-facet-show-more-container .searchstax-facet-show-button:focus-visible,
+.searchstax-facets-container-mobile .searchstax-facet-container .searchstax-facet-show-more-container .searchstax-facet-show-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(233, 175, 47, 0.4);
+}
+
+/* Feedback and Suggestions */
+.searchstax-feedback-container {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--fsu-text-dark);
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+.searchstax-feedback-container .searchstax-feedback-container-suggested a.searchstax-feedback-original-query {
+  color: var(--fsu-green);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.searchstax-feedback-container .searchstax-feedback-container-suggested a.searchstax-feedback-original-query:hover {
+  color: var(--fsu-gold);
+  text-decoration: underline;
+}
+
+/* No Results */
+.searchstax-no-results .searchstax-suggestion-term {
+  color: var(--fsu-green);
+  font-weight: 600;
+}
+
+/* Sorting */
+.searchstax-sorting-container .searchstax-search-order-select {
+  border: 2px solid var(--fsu-green);
+  border-radius: 6px;
+  background-color: var(--fsu-white);
+  color: var(--fsu-text-dark);
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+.searchstax-sorting-container .searchstax-search-order-select:focus {
+  border-color: var(--fsu-gold);
+  box-shadow: 0 0 0 3px rgba(233, 175, 47, 0.4);
+  outline: none;
+}
+
+/* Related Searches */
+.searchstax-related-searches-container .searchstax-related-search {
+  color: var(--fsu-green);
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: inline-block;
+  margin: 0.25rem 0.5rem 0.25rem 0;
+  border: 1px solid var(--fsu-green);
+}
+
+.searchstax-related-searches-container .searchstax-related-search:hover {
+  background-color: var(--fsu-green);
+  color: var(--fsu-white);
+}
+
+/* Page Layout - FSU Branded */
+.searchstax-page-layout-container {
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .searchstax-search-input-container {
+    border-radius: 25px;
+    padding: 10px 15px 5px 15px;
+  }
+  
+  .searchstax-search-result {
+    padding: 16px 12px;
+    margin-bottom: 15px;
+  }
+  
+  .searchstax-search-result .searchstax-search-result-title {
+    font-size: 18px;
+  }
+  
+  .searchstax-pagination-container .searchstax-pagination-content {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Accessibility Improvements */
+.searchstax-skip {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  color: var(--fsu-green);
+  background-color: var(--fsu-gold);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.searchstax-skip:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  z-index: 1000;
+}
+
+.searchstax-skip:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 86, 63, 0.4);
+}
+
+/* Custom FSU Branding Elements */
+.fsu-search-header {
+  background: linear-gradient(135deg, var(--fsu-green) 0%, var(--fsu-dark-green) 100%);
+  color: var(--fsu-white);
+  padding: 1rem;
+  text-align: center;
+  border-radius: 8px 8px 0 0;
+}
+
+.fsu-search-brand {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.fsu-search-tagline {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  color: var(--fsu-gold);
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --fsu-green: #003d2a;
+    --fsu-gold: #cc9900;
+    --fsu-dark-green: #002619;
+  }
 }
