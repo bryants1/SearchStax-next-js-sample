@@ -59,79 +59,160 @@ export default function Home() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#FFFFFF' }}>
-      {/* Fitchburg State University Header */}
-      <header className="fitchburg-header">
-        <div className="max-w-6xl mx-auto px-4 py-2">
-          <div className="flex items-center justify-between">
-            {/* University Logo and Name */}
-            <div className="flex items-center gap-4">
-              <div className="logo-placeholder">
-                FSU
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-white mb-0">
-                  Fitchburg State University
-                </h1>
-                <p className="text-sm opacity-90 mb-0" style={{ color: '#E9AF2F' }}>
-                  Search University Resources
-                </p>
-              </div>
+      {/* Authentic Fitchburg State University Header */}
+      <header style={{
+        backgroundColor: '#00563F',
+        padding: '0',
+        position: 'relative',
+        zIndex: 1000
+      }}>
+        <div style={{
+          maxWidth: '1400px',
+          margin: '0 auto',
+          padding: '0 20px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          height: '70px'
+        }}>
+          {/* FSU Logo and Text */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            {/* FSU Logo with distinctive bars */}
+            <div style={{
+              width: '32px',
+              height: '32px',
+              position: 'relative'
+            }}>
+              <div style={{
+                position: 'absolute',
+                width: '4px',
+                height: '24px',
+                backgroundColor: '#E9AF2F',
+                left: '4px',
+                top: '4px',
+                borderRadius: '1px'
+              }}></div>
+              <div style={{
+                position: 'absolute',
+                width: '4px',
+                height: '18px',
+                backgroundColor: '#E9AF2F',
+                left: '12px',
+                top: '7px',
+                borderRadius: '1px'
+              }}></div>
+              <div style={{
+                position: 'absolute',
+                width: '4px',
+                height: '14px',
+                backgroundColor: '#E9AF2F',
+                left: '20px',
+                top: '9px',
+                borderRadius: '1px'
+              }}></div>
             </div>
             
-            {/* Optional Navigation Links */}
-            <nav className="hidden md:flex items-center gap-6">
+            <span style={{
+              fontFamily: 'Arial, sans-serif',
+              fontSize: '18px',
+              fontWeight: '700',
+              letterSpacing: '0.5px',
+              color: 'white',
+              textTransform: 'uppercase'
+            }}>
+              FITCHBURG STATE UNIVERSITY
+            </span>
+          </div>
+          
+          {/* Right Side Navigation */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+            {/* Apply and Give Links */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <a 
-                href="https://www.fitchburgstate.edu/" 
-                className="text-white hover:text-yellow-300 transition-colors duration-200 text-sm font-medium"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="https://www.fitchburgstate.edu/admissions-and-aid/apply-fitchburg-state" 
+                style={{
+                  color: 'white',
+                  textDecoration: 'none',
+                  fontSize: '16px',
+                  fontWeight: '500',
+                  fontFamily: 'Arial, sans-serif',
+                  transition: 'color 0.2s ease'
+                }}
+                onMouseEnter={(e) => e.target.style.color = '#E9AF2F'}
+                onMouseLeave={(e) => e.target.style.color = 'white'}
               >
-                University Home
+                Apply
               </a>
+              <span style={{ color: 'white', fontSize: '16px', opacity: 0.7 }}>|</span>
               <a 
-                href="https://www.fitchburgstate.edu/academics/" 
-                className="text-white hover:text-yellow-300 transition-colors duration-200 text-sm font-medium"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="https://www.fitchburgstate.edu/about/advancement/make-gift" 
+                style={{
+                  color: 'white',
+                  textDecoration: 'none',
+                  fontSize: '16px',
+                  fontWeight: '500',
+                  fontFamily: 'Arial, sans-serif',
+                  transition: 'color 0.2s ease'
+                }}
+                onMouseEnter={(e) => e.target.style.color = '#E9AF2F'}
+                onMouseLeave={(e) => e.target.style.color = 'white'}
               >
-                Academics
+                Give
               </a>
-              <a 
-                href="https://www.fitchburgstate.edu/admissions/" 
-                className="text-white hover:text-yellow-300 transition-colors duration-200 text-sm font-medium"
-                target="_blank"
-                rel="noopener noreferrer"
+            </div>
+            
+            {/* Action Buttons */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              {/* Search Button */}
+              <button 
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: 'white',
+                  cursor: 'pointer',
+                  padding: '8px',
+                  borderRadius: '4px',
+                  transition: 'background-color 0.2s ease'
+                }}
+                onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+                aria-label="Search"
               >
-                Admissions
-              </a>
-            </nav>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
+                </svg>
+              </button>
+              
+              {/* Menu Button */}
+              <button 
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: 'white',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '8px 12px',
+                  borderRadius: '4px',
+                  transition: 'background-color 0.2s ease',
+                  fontFamily: 'Arial, sans-serif'
+                }}
+                onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+                aria-label="Menu"
+              >
+                <span style={{ fontSize: '16px', fontWeight: '500' }}>Menu</span>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', width: '20px' }}>
+                  <span style={{ width: '100%', height: '2px', backgroundColor: 'white', transition: 'all 0.2s ease' }}></span>
+                  <span style={{ width: '100%', height: '2px', backgroundColor: 'white', transition: 'all 0.2s ease' }}></span>
+                  <span style={{ width: '100%', height: '2px', backgroundColor: 'white', transition: 'all 0.2s ease' }}></span>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       </header>
-
-      {/* University Search Information Bar */}
-      <div className="bg-gray-50 border-b-2" style={{ borderBottomColor: '#E9AF2F' }}>
-        <div className="max-w-6xl mx-auto px-4 py-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <svg 
-                className="w-5 h-5" 
-                style={{ color: '#00563F' }}
-                fill="currentColor" 
-                viewBox="0 0 20 20"
-              >
-                <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
-              </svg>
-              <span className="text-sm font-medium" style={{ color: '#00563F' }}>
-                Search academic programs, faculty, news, and university resources
-              </span>
-            </div>
-            <div className="text-xs text-gray-600 hidden sm:block">
-              Powered by SearchStax
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 py-8">
