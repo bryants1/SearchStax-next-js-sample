@@ -30,12 +30,10 @@ export default function Home() {
     questionURL: 'https://search-ai-us.searchstax.com/api/v1/4880/answer/',
     relatedSearchesURL: 'https://app.searchstax.com/api/v1/4880/related-search/',
     relatedSearchesAPIKey: 'f259bba1449c13609cf8c27693c33cebef9c3442',
-    model: 'Default', // Changed from undefined model
+    model: 'Default',
     router: {
       enabled: true,
     },
-    // Add default sorting to prevent undefined issues
-    defaultSort: 'relevance desc',
   };
 
   const initialized = (searchstax: any) => {
@@ -44,17 +42,6 @@ export default function Home() {
 
   const beforeSearch = (props: any) => {
     console.log('Before search:', props);
-    
-    // Ensure sort order is valid
-    if (props.order === 'undefined desc' || !props.order) {
-      props.order = 'relevance desc';
-    }
-    
-    // Ensure model is not undefined
-    if (!props.model || props.model === 'undefined') {
-      props.model = 'Default';
-    }
-    
     return props;
   };
 
