@@ -138,8 +138,8 @@ export default function Home() {
                   fontFamily: 'Arial, sans-serif',
                   transition: 'color 0.2s ease'
                 }}
-                onMouseEnter={(e) => e.target.style.color = '#E9AF2F'}
-                onMouseLeave={(e) => e.target.style.color = 'white'}
+                onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#E9AF2F'}
+                onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = 'white'}
               >
                 Apply
               </a>
@@ -154,8 +154,8 @@ export default function Home() {
                   fontFamily: 'Arial, sans-serif',
                   transition: 'color 0.2s ease'
                 }}
-                onMouseEnter={(e) => e.target.style.color = '#E9AF2F'}
-                onMouseLeave={(e) => e.target.style.color = 'white'}
+                onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#E9AF2F'}
+                onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = 'white'}
               >
                 Give
               </a>
@@ -174,8 +174,8 @@ export default function Home() {
                   borderRadius: '4px',
                   transition: 'background-color 0.2s ease'
                 }}
-                onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'}
-                onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+                onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = 'rgba(255, 255, 255, 0.1)'}
+                onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = 'transparent'}
                 aria-label="Search"
               >
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
@@ -198,8 +198,8 @@ export default function Home() {
                   transition: 'background-color 0.2s ease',
                   fontFamily: 'Arial, sans-serif'
                 }}
-                onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'}
-                onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+                onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = 'rgba(255, 255, 255, 0.1)'}
+                onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = 'transparent'}
                 aria-label="Menu"
               >
                 <span style={{ fontSize: '16px', fontWeight: '500' }}>Menu</span>
