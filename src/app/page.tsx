@@ -42,6 +42,12 @@ export default function Home() {
 
   const beforeSearch = (props: any) => {
     console.log('Before search:', props);
+    
+    // MINIMAL FIX: Only fix the undefined sort issue
+    if (props.sort === 'undefined desc' || props.sort === undefined) {
+      props.sort = 'score desc'; // Default to relevance sort
+    }
+    
     return props;
   };
 
