@@ -15,7 +15,7 @@ import {
 } from '@searchstax-inc/searchstudio-ux-react';
 
 // Import CSS
-import '../../node_modules/@searchstax-inc/searchstudio-ux-js/dist/styles/mainTheme.css';
+import './style.css';
 
 export default function Home() {
   // Your working config - inline instead of external file
